@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <p style="font-size: 20px; font-family: sans-serif">PAY NOW</p>
+        <p style="font-size: 16px; font-family: sans-serif">Amount #100</p>
+
+        <button
+          class="buy-button"
+          style="
+            width: 100%;
+            border: 0;
+            font-family: sans-serif;
+            padding: 15px;
+            background: #0b3371;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+          "
+          onclick="
+            Smharty.checkout({
+              public_key: 'pk_live_6yWz4eZKxvg79aHdiKRHEPnTqq47dAWh',
+              amount: 100,
+              customer_email: 'blessing010@gmail.com',
+              customer_firstname: 'Blessing',
+              customer_lastname: 'Oluwaseun',
+              customer_phone: '08143323456',
+              currency: 'NGN', // NGN only
+              redirect_url: 'https://your_redirecturl.com',
+            })
+          "
+        >
+          Pay Now
+        </button>
+      </div>
+    </div>
+
+    <script src="https://checkout.smharty.deeppaya.com/smharty.js"></script>
+  </body>
+</html>

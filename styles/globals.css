@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@plugin '../hero.ts';
+
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "font", sans-serif;
+  --font-mono: "monospace", monospace;
+}
+
+* {
+  /* border: 0; */
+  outline: 0;
+}
+
+/* For the whole page (html/body) */
+html,
+body {
+  -ms-overflow-style: none; /* IE + Edge (old) */
+  scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge (newer), Opera */
+}
+
+/* If you also want to hide it on elements with .overflow-x-scroll */
+/* (but note: your current class name suggests horizontal scrolling) */
+.overflow-x-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.onboard-input {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 0px 20px;
+  font-size: 15px;
+}
