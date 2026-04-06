@@ -10,7 +10,7 @@ on:
 env:
   DOCKER_REPO: smhartgroup/smhartgroup
   IMAGE_TAG: checkout-frontend
-  HELM_CHARTS_REPO: git@github.com:Smhart-group/smharty-helm-charts.git
+  HELM_CHARTS_REPO: https://github.com/Smhart-group/smharty-helm-charts.git
   HELM_VALUES_FILE: checkout-frontend/values.yaml
 
 jobs:
@@ -21,22 +21,18 @@ jobs:
       contents: read
 
     steps:
-      # ── 1. Checkout source ───────────────────────────────────────────────
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ── 2. Set up Docker Buildx ──────────────────────────────────────────
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # ── 3. Log in to Docker Hub ──────────────────────────────────────────
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      # ── 4. Build & push image ────────────────────────────────────────────
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
@@ -47,32 +43,16 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # ── 5. Write SSH deploy key for helm-charts repo ─────────────────────
-      - name: Configure SSH deploy key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.HELM_CHARTS_DEPLOY_KEY }}" > ~/.ssh/helm_deploy_key
-          chmod 600 ~/.ssh/helm_deploy_key
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          cat >> ~/.ssh/config <<EOF
-          Host github.com
-            IdentityFile ~/.ssh/helm_deploy_key
-            StrictHostKeyChecking no
-          EOF
-
-      # ── 6. Clone helm-charts repo ─────────────────────────────────────────
       - name: Clone smharty-helm-charts
         run: |
-          git clone ${{ env.HELM_CHARTS_REPO }} helm-charts
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/Smhart-group/smharty-helm-charts.git helm-charts
 
-      # ── 7. Update image tag in values.yaml ───────────────────────────────
       - name: Update image tag in Helm values
         run: |
           cd helm-charts
           sed -i "s|tag:.*|tag: ${{ env.IMAGE_TAG }}|" ${{ env.HELM_VALUES_FILE }}
           grep "tag:" ${{ env.HELM_VALUES_FILE }}
 
-      # ── 8. Commit & push updated values.yaml ──────────────────────────────
       - name: Commit and push Helm chart update
         run: |
           cd helm-charts
@@ -87,7 +67,6 @@ jobs:
           Ref:  ${{ github.ref }}"
           git push origin main
 
-      # ── 9. Summary ───────────────────────────────────────────────────────
       - name: Summary
         run: |
           echo "### Docker Build & Helm Update" >> $GITHUB_STEP_SUMMARY
@@ -95,4 +74,3 @@ jobs:
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
           echo "| **Image** | \`${{ env.DOCKER_REPO }}:${{ env.IMAGE_TAG }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Helm Chart** | \`${{ env.HELM_VALUES_FILE }}\` |" >> $GITHUB_STEP_SUMMARY
