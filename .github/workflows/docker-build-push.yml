@@ -42,6 +42,8 @@ jobs:
           tags: ${{ env.DOCKER_REPO }}:${{ env.IMAGE_TAG }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            NEXT_PUBLIC_APP_URL=https://smharty.com
 
       - name: Clone smharty-helm-charts
         run: |
