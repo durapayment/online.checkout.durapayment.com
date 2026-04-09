@@ -21,7 +21,7 @@ const InnerCheckout = () => {
   );
   const [currenctPage, setCurrentPage] = useState("transfer");
 
-  // ── Card states ────────────────────────────────────────
+  // ── Card states ──────────────────────────────────
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
