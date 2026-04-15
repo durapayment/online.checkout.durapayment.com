@@ -4,10 +4,10 @@
   let modalContainer = null;
   let iframe = null;
   let loader = null;
-  const baseUrlApi = "http://localhost:8001";
-  const baseUrlApp = "http://localhost:3001";
-  // const baseUrlApi = "https://checkoutapi.smharty.radiustechsolutions.com";
-  // const baseUrlApp = "https://checkout.smharty.radiustechsolutions.com";
+  // const baseUrlApi = "http://localhost:8001";
+  // const baseUrlApp = "http://localhost:3001";
+  const baseUrlApi = "https://checkout-apps.smharty.com";
+  const baseUrlApp = "http://checkout.smharty.com";
 
   function createModal() {
     if (modalContainer) return;
