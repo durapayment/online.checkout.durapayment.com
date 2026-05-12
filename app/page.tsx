@@ -2,10 +2,10 @@
 import { useEffect, useState, useMemo, Suspense } from "react";
 import { Button } from "@heroui/button";
 import { formatNaira } from "@/helpers/formatAmount";
-import { PiCreditCard, PiBank } from "react-icons/pi";
+import { PiCreditCard, PiBank, PiCreditCardBold } from "react-icons/pi";
 import { useSearchParams } from "next/navigation";
 import { Spinner } from "@heroui/spinner";
-import { TbCopy, TbCheck, TbArrowsExchange } from "react-icons/tb";
+import { TbArrowsExchange, TbTransfer } from "react-icons/tb";
 import { IoCard } from "react-icons/io5";
 import { IoMdClose, IoMdLock } from "react-icons/io";
 import { siteConfig } from "@/config/site";
@@ -271,14 +271,16 @@ const InnerCheckout = () => {
     setVerifyMessage("");
 
     const ref = searchParams.get("ref");
-    const decoded = atob(ref!);
+    if (!ref) throw new Error("Missing payment reference");
+
+    const decoded = atob(ref);
     const [refs, pk] = decoded.split("||");
 
     try {
       const res = await fetch("/api/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reference: ref, dent: pk }),
+        body: JSON.stringify({ reference: refs, dent: pk }),
       });
 
       const json = await res.json();
@@ -289,7 +291,7 @@ const InnerCheckout = () => {
         setTimeout(() => {
           window.location.href =
             `${data.checkout_details?.redirect_url}?ref=${refs}` ||
-            `/success?ref=${refs}`;
+            `/success?ref=${ref}`;
         }, 2000);
       } else {
         throw new Error(json.message || "Payment not verified yet");
@@ -550,9 +552,9 @@ const InnerCheckout = () => {
     <div className="bg-white sm:bg-[#fafafa] flex flex-col pt-0 sm:pt-[100px] items-center h-[100svh]">
       <div className="max-w-full relative sm:max-w-[490px] rounded-lg sm:border-1 sm:border-gray-200 w-full flex items-center h-[500px]">
         {/* Side menu - desktop */}
-        <div className="w-[28%] pt-[10px] rounded-l-lg pl-[10px] hidden sm:block h-[100%] bg-[#f4f4f4]">
+        <div className="w-[28%] pt-[10px] rounded-l-lg pl-[10px] hidden sm:block h-[100%] bg-[#14644c]">
           <div className="h-[50px] w-full border-b-1 border-[#e2e2e2] flex items-center justify-start">
-            <p className="text-[12px] text-[#484646] font-bold">PAY WITH</p>
+            <p className="text-[12px] text-white font-bold">PAY WITH</p>
           </div>
           {["card", "transfer"].map((method) => (
             <div
@@ -561,9 +563,13 @@ const InnerCheckout = () => {
               className="h-[45px] cursor-pointer w-full border-b-[0.6px] border-[#e2e2e2] flex items-center justify-start"
             >
               <div className="flex items-center gap-2 pl-2">
-                {method === "card" ? <IoCard /> : <PiBank />}
+                {method === "card" ? (
+                  <PiCreditCardBold className="text-white" />
+                ) : (
+                  <TbTransfer className="text-white" />
+                )}
                 <p
-                  className={`text-[13px] mt-[3px] font-medium ${currenctPage === method ? "text-primary" : "text-[#6e6e6e]"}`}
+                  className={`text-[13px] mt-[3px] font-medium ${currenctPage === method ? "text-[#9ca27b]" : "text-white"}`}
                 >
                   {method === "card" ? "Card" : "Transfer"}
                 </p>
@@ -585,14 +591,14 @@ const InnerCheckout = () => {
           ) : (
             <div className="flex flex-col h-full">
               {/* Mobile method indicator */}
-              <div className="sm:hidden px-[20px] py-[12px] bg-[#f4f4f4]">
+              <div className="sm:hidden px-[20px] py-[12px] bg-[#14644c]">
                 <div className="flex items-center gap-2">
                   {currenctPage === "card" ? (
-                    <IoCard className="text-[19px] text-primary" />
+                    <IoCard className="text-[19px] text-white" />
                   ) : (
-                    <PiBank className="text-[19px] text-primary" />
+                    <PiBank className="text-[19px] text-white" />
                   )}
-                  <p className="text-[15px] mt-[3px] capitalize font-medium text-[#2e2e2e]">
+                  <p className="text-[15px] mt-[3px] capitalize font-medium text-[#ffffff]">
                     {currenctPage}
                   </p>
                 </div>
@@ -652,8 +658,8 @@ const InnerCheckout = () => {
       </div>
 
       <div className="p-[15px] mt-[15px] flex items-center gap-1">
-        <IoMdLock className="text-[15px] text-[#030a2f]" />
-        <p className="text-[13px] text-[#030a2f] mt-[3px]">
+        <IoMdLock className="text-[15px] text-black" />
+        <p className="text-[13px] text-black mt-[3px]">
           Secured by{" "}
           <span className="lowercase font-black">{siteConfig.name}</span>
         </p>

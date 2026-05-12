@@ -3,8 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SoundWave Pro X - Premium Wireless Headphones</title>
+    <title>GoalRush — Bet. Win. Repeat.</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      :root {
+        --green: #00e676;
+        --dark-green: #00c853;
+        --pitch: #0a1f0e;
+        --card: #0f2a14;
+        --card2: #122b18;
+        --text: #e8f5e9;
+        --muted: #7cb47e;
+        --accent: #ffeb3b;
+        --red: #ff1744;
+        --border: rgba(0, 230, 118, 0.15);
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -12,148 +29,431 @@
       }
 
       body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        background: #0b3371;
+        font-family: "DM Sans", sans-serif;
+        background: var(--pitch);
+        color: var(--text);
         min-height: 100vh;
-        /* display: flex; */
-        /* align-items: center; */
-        /* justify-content: center; */
-        /* padding: 20px; */
+        overflow-x: hidden;
+      }
+
+      /* Pitch texture overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 60px,
+            rgba(0, 230, 118, 0.015) 60px,
+            rgba(0, 230, 118, 0.015) 61px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 60px,
+            rgba(0, 230, 118, 0.015) 60px,
+            rgba(0, 230, 118, 0.015) 61px
+          );
+        pointer-events: none;
+        z-index: 0;
       }
 
       .container {
         max-width: 1000px;
         width: 100%;
-        background: white;
-        border-radius: 0px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
+        min-height: 100svh;
+        background: transparent;
         display: grid;
-        height: 100svh;
         grid-template-columns: 1fr 1fr;
-        gap: 0;
+        position: relative;
+        z-index: 1;
+        margin: 0 auto;
       }
 
-      .product-image {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      /* LEFT PANEL */
+      .left-panel {
+        background: linear-gradient(160deg, #0f3318 0%, #061509 100%);
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 60px 40px;
+        padding: 50px 30px;
         position: relative;
+        overflow: hidden;
+        border-right: 1px solid var(--border);
       }
 
-      .product-image::before {
+      .left-panel::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border: 60px solid rgba(0, 230, 118, 0.04);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .left-panel::after {
         content: "";
         position: absolute;
         width: 300px;
         height: 300px;
-        background: radial-gradient(
-          circle,
-          rgba(102, 126, 234, 0.1) 0%,
-          transparent 70%
-        );
+        border: 2px dashed rgba(0, 230, 118, 0.1);
         border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
 
-      .headphone-emoji {
-        font-size: 200px;
-        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+      .scoreboard {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px 28px;
+        width: 100%;
+        max-width: 280px;
         position: relative;
-        z-index: 1;
+        z-index: 2;
+        box-shadow: 0 0 40px rgba(0, 230, 118, 0.08);
       }
 
-      .product-details {
-        padding: 30px 50px;
+      .match-status {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
       }
 
-      .badge {
-        display: inline-block;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      .live-pill {
+        background: var(--red);
         color: white;
-        padding: 6px 16px;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 10px;
         border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.6;
+        }
+      }
+
+      .match-time {
         font-size: 12px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .teams {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+
+      .team {
+        text-align: center;
+        flex: 1;
+      }
+
+      .team-flag {
+        font-size: 32px;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .team-name {
+        font-size: 11px;
+        color: var(--muted);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        margin-bottom: 20px;
+      }
+
+      .score-display {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .score-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 42px;
+        color: var(--green);
+        line-height: 1;
+      }
+
+      .score-sep {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 28px;
+        color: var(--muted);
+        line-height: 1;
+      }
+
+      .odds-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+        margin-top: 4px;
+      }
+
+      .odd-btn {
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 4px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .odd-btn:hover,
+      .odd-btn.active {
+        background: var(--green);
+        border-color: var(--green);
+      }
+
+      .odd-btn:hover .odd-label,
+      .odd-btn.active .odd-label {
+        color: var(--pitch);
+      }
+      .odd-btn:hover .odd-val,
+      .odd-btn.active .odd-val {
+        color: var(--pitch);
+      }
+
+      .odd-label {
+        font-size: 9px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      .odd-val {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        color: var(--green);
+        line-height: 1.2;
+      }
+
+      /* Mini match cards below */
+      .mini-matches {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        max-width: 280px;
+        margin-top: 16px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .mini-match {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+      }
+
+      .mini-teams {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .mini-time {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .mini-best-odd {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18px;
+        color: var(--accent);
+      }
+
+      /* RIGHT PANEL */
+      .right-panel {
+        padding: 40px 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 42, 20, 0.6) 0%,
+          transparent 100%
+        );
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .brand-icon {
+        font-size: 28px;
+        filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.5));
+      }
+
+      .brand-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 28px;
+        letter-spacing: 2px;
+        color: var(--green);
+        line-height: 1;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(0, 230, 118, 0.1);
+        border: 1px solid rgba(0, 230, 118, 0.3);
+        color: var(--green);
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 18px;
         width: fit-content;
       }
 
       h1 {
-        font-size: 36px;
-        color: #1a202c;
-        margin-bottom: 12px;
-        font-weight: 700;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 52px;
+        color: var(--text);
+        margin-bottom: 8px;
+        line-height: 1;
+        letter-spacing: 1px;
+      }
+
+      h1 span {
+        color: var(--green);
+        text-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
       }
 
       .subtitle {
-        color: #718096;
-        font-size: 16px;
-        margin-bottom: 30px;
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 28px;
+        line-height: 1.6;
+        max-width: 300px;
       }
 
-      .price {
-        font-size: 38px;
+      .bonus-card {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 230, 118, 0.12) 0%,
+          rgba(0, 200, 83, 0.06) 100%
+        );
+        border: 1px solid rgba(0, 230, 118, 0.25);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 26px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .bonus-card::before {
+        content: "🎁";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 36px;
+        opacity: 0.4;
+      }
+
+      .bonus-label {
+        font-size: 10px;
+        color: var(--green);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
         font-weight: 700;
-        color: #667eea;
-        margin-bottom: 30px;
+        margin-bottom: 4px;
+      }
+
+      .bonus-amount {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 38px;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .bonus-sub {
+        font-size: 12px;
+        color: var(--muted);
       }
 
       .features {
         list-style: none;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
 
       .features li {
-        padding: 12px 0;
-        color: #4a5568;
-        font-size: 15px;
+        padding: 9px 0;
+        color: #b2dfb4;
+        font-size: 14px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
+        border-bottom: 1px solid rgba(0, 230, 118, 0.06);
       }
 
-      .features li::before {
-        content: "✓";
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        background: #0b3371;
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 24px;
-        font-weight: bold;
-        font-size: 14px;
+      .features li:last-child {
+        border-bottom: none;
+      }
+
+      .feat-icon {
+        font-size: 16px;
         flex-shrink: 0;
       }
 
       .buy-button {
-        background: #0b3371;
-        color: white;
+        background: linear-gradient(
+          135deg,
+          var(--green) 0%,
+          var(--dark-green) 100%
+        );
+        color: var(--pitch);
         border: none;
-        padding: 14px 40px;
-        font-size: 18px;
-        font-weight: 600;
-        font-size: 14px;
+        padding: 16px 40px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: 2px;
         border-radius: 12px;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 24px rgba(0, 230, 118, 0.35);
+        width: 100%;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
       }
 
       .buy-button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        box-shadow: 0 8px 32px rgba(0, 230, 118, 0.5);
       }
 
       .buy-button:active {
@@ -161,9 +461,9 @@
       }
 
       .security-note {
-        margin-top: 20px;
-        font-size: 13px;
-        color: #a0aec0;
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--muted);
         text-align: center;
         display: flex;
         align-items: center;
@@ -171,78 +471,247 @@
         gap: 6px;
       }
 
+      /* Ticker */
+      .ticker {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border);
+        padding: 8px 0;
+        z-index: 100;
+        overflow: hidden;
+      }
+
+      .ticker-inner {
+        display: flex;
+        gap: 60px;
+        animation: ticker 20s linear infinite;
+        white-space: nowrap;
+      }
+
+      @keyframes ticker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .ticker-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .ticker-item strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .ticker-item .ticker-odd {
+        color: var(--accent);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 16px;
+      }
+
       @media (max-width: 768px) {
         .container {
           grid-template-columns: 1fr;
         }
 
-        .product-image {
+        .left-panel {
           padding: 40px 20px;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
         }
 
-        .headphone-emoji {
-          font-size: 120px;
-        }
-
-        .product-details {
-          padding: 40px 30px;
+        .right-panel {
+          padding: 36px 24px;
         }
 
         h1 {
-          font-size: 28px;
-        }
-
-        .price {
-          font-size: 36px;
+          font-size: 40px;
         }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="product-image">
-        <div class="headphone-emoji">🎧</div>
+      <!-- LEFT: Live match widget -->
+      <div class="left-panel">
+        <div class="scoreboard">
+          <div class="match-status">
+            <span class="live-pill">● Live</span>
+            <span class="match-time">67'</span>
+          </div>
+
+          <div class="teams">
+            <div class="team">
+              <span class="team-flag">🦁</span>
+              <span class="team-name">Chelsea</span>
+            </div>
+            <div class="score-display">
+              <span class="score-num">2</span>
+              <span class="score-sep">:</span>
+              <span class="score-num">1</span>
+            </div>
+            <div class="team">
+              <span class="team-flag">🦅</span>
+              <span class="team-name">Arsenal</span>
+            </div>
+          </div>
+
+          <div class="odds-row">
+            <div class="odd-btn active">
+              <div class="odd-label">1</div>
+              <div class="odd-val">1.85</div>
+            </div>
+            <div class="odd-btn">
+              <div class="odd-label">X</div>
+              <div class="odd-val">3.40</div>
+            </div>
+            <div class="odd-btn">
+              <div class="odd-label">2</div>
+              <div class="odd-val">4.20</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-matches">
+          <div class="mini-match">
+            <div>
+              <div class="mini-teams">Man City vs Liverpool</div>
+              <div class="mini-time">Today 20:45</div>
+            </div>
+            <div class="mini-best-odd">2.10</div>
+          </div>
+          <div class="mini-match">
+            <div>
+              <div class="mini-teams">Real Madrid vs Barça</div>
+              <div class="mini-time">Tomorrow 21:00</div>
+            </div>
+            <div class="mini-best-odd">3.75</div>
+          </div>
+        </div>
       </div>
 
-      <div class="product-details">
-        <span class="badge">Premium Audio</span>
-        <h1>SoundWave Pro X</h1>
-        <p class="subtitle">Experience studio-quality sound anywhere</p>
+      <!-- RIGHT: CTA / Deposit panel -->
+      <div class="right-panel">
+        <div class="brand">
+          <span class="brand-icon">⚽</span>
+          <span class="brand-name">GoalRush</span>
+        </div>
 
-        <div class="price">₦350</div>
+        <span class="badge">🔥 New Members Offer</span>
+
+        <h1>BET SMART.<br /><span>WIN BIG.</span></h1>
+        <p class="subtitle">
+          Nigeria's sharpest football betting platform. Best odds, instant
+          payouts, live markets on every match.
+        </p>
+
+        <div class="bonus-card">
+          <div class="bonus-label">Welcome Bonus</div>
+          <div class="bonus-amount">₦10,000</div>
+          <div class="bonus-sub">100% match on your first deposit</div>
+        </div>
 
         <ul class="features">
-          <li>Active Noise Cancellation (ANC)</li>
-          <li>40-hour battery life</li>
-          <li>Premium leather ear cushions</li>
+          <li>
+            <span class="feat-icon">⚡</span> Instant withdrawals to your bank
+          </li>
+          <li>
+            <span class="feat-icon">📺</span> Live streaming of 500+ matches
+          </li>
+          <li><span class="feat-icon">🎯</span> 10,000+ markets every day</li>
         </ul>
 
         <button
           class="buy-button"
           onclick="
-            Smharty.checkout({
-              public_key: 'pk_live_H8gmtyCNaRNGIbIP0lHzveTd80m9XJvf',
-              amount: 350,
-              customer_email: 'blessing010@gmail.com',
-              customer_firstname: 'Blessing',
-              customer_lastname: 'Oluwaseun',
-              customer_phone: '08143323456',
-              currency: 'NGN', // NGN only
-              redirect_url: 'https://radiustechsolutions.com',
+            Durapayment.checkout({
+              public_key: 'pk_live_Rqb4W6n6nckD02unXPwD8ZZmhMBbO151',
+              amount: 100,
+              customer_email: 'olutechn@gmail.com',
+              customer_firstname: 'Olumide',
+              customer_lastname: 'John',
+              customer_phone: '08141314105',
+              currency: 'NGN',
+              redirect_url: 'http://localhost:3001/success',
             })
           "
         >
-          Buy Now
+          Deposit &amp; Claim Bonus
         </button>
 
-        <div class="security-note">🔒 Secure payment powered by Smharty</div>
+        <div class="security-note">
+          🔒 Secure payment powered by Durapayment
+        </div>
       </div>
     </div>
 
-    <!-- <script src="http://localhost:3001/smharty.js"></script> -->
-    <script src="http://checkout.smharty.com/smharty.js"></script>
+    <!-- Live scores ticker -->
+    <div class="ticker">
+      <div class="ticker-inner">
+        <span class="ticker-item"
+          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Chelsea 2–1 Arsenal</strong>
+          <span class="ticker-odd">67'</span></span
+        >
+        <span class="ticker-item"
+          >🇪🇸 <strong>Real Madrid 1–0 Atlético</strong>
+          <span class="ticker-odd">55'</span></span
+        >
+        <span class="ticker-item"
+          >🇩🇪 <strong>Bayern 3–2 Dortmund</strong>
+          <span class="ticker-odd">80'</span></span
+        >
+        <span class="ticker-item"
+          >🇮🇹 <strong>Juventus 0–0 Inter</strong>
+          <span class="ticker-odd">32'</span></span
+        >
+        <span class="ticker-item"
+          >🇫🇷 <strong>PSG 2–0 Lyon</strong>
+          <span class="ticker-odd">71'</span></span
+        >
+        <span class="ticker-item"
+          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Man City 1–1 Liverpool</strong>
+          <span class="ticker-odd">45'</span></span
+        >
+        <!-- duplicate for seamless loop -->
+        <span class="ticker-item"
+          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Chelsea 2–1 Arsenal</strong>
+          <span class="ticker-odd">67'</span></span
+        >
+        <span class="ticker-item"
+          >🇪🇸 <strong>Real Madrid 1–0 Atlético</strong>
+          <span class="ticker-odd">55'</span></span
+        >
+        <span class="ticker-item"
+          >🇩🇪 <strong>Bayern 3–2 Dortmund</strong>
+          <span class="ticker-odd">80'</span></span
+        >
+        <span class="ticker-item"
+          >🇮🇹 <strong>Juventus 0–0 Inter</strong>
+          <span class="ticker-odd">32'</span></span
+        >
+        <span class="ticker-item"
+          >🇫🇷 <strong>PSG 2–0 Lyon</strong>
+          <span class="ticker-odd">71'</span></span
+        >
+        <span class="ticker-item"
+          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Man City 1–1 Liverpool</strong>
+          <span class="ticker-odd">45'</span></span
+        >
+      </div>
+    </div>
+
+    <script src="http://localhost:3001/durapayment.js"></script>
+    <!-- <script src="https://checkout.durapayment.com/durapayment.js"></script> -->
   </body>
 </html>
-
-<!-- pk_live_MJg8rmFoTX53N33IeWoU87nF8WX311ct -->
-<!-- pk_live_HeytCrrGdiIg1q0zGIOZKxFaHlaBeBpo -->

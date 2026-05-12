@@ -7,6 +7,7 @@ import { formatNaira } from "@/helpers/formatAmount";
 import { IoMdCheckmarkCircle, IoMdLock } from "react-icons/io";
 import { siteConfig } from "@/config/site";
 import { format } from "date-fns";
+import Link from "next/link";
 
 interface PaymentData {
   checkout_details?: {
@@ -32,7 +33,7 @@ const SuccessScreens = () => {
     const ref = searchParams.get("ref");
 
     if (ref) {
-      const decodeRef = atob(ref);
+      const decodeRef = ref;
       const parts = decodeRef.split("||");
       const reference = parts[0];
       const pk = parts[1];
@@ -102,7 +103,7 @@ const SuccessScreens = () => {
               <img
                 src={data?.checkout_details?.business_logo ?? "/logo.png"}
                 alt="Business Logo"
-                className="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+                className="w-12 h-12 object-cover"
               />
             </div>
             <h1 className="text-2xl font-semibold text-gray-800">
@@ -125,10 +126,10 @@ const SuccessScreens = () => {
             </div>
           ) : error ? (
             <div className="text-center py-10 px-6">
-              <p className="text-red-600 font-medium">{error}</p>
+              {/* <p className="text-red-600 font-medium">{error}</p> */}
               <Button
                 onPress={handleGoBack}
-                className="mt-6 bg-gray-800 text-white px-8 py-3 rounded-md"
+                className="bg-gray-800 text-white px-8 py-3 rounded-md"
               >
                 Return to Home
               </Button>
@@ -177,7 +178,12 @@ const SuccessScreens = () => {
             <IoMdLock className="text-[15px] text-[#030a2f]" />
             <p className="text-[13px] text-[#030a2f] mt-[3px]">
               Secured by{" "}
-              <span className=" lowercase font-black ">{siteConfig.name}</span>
+              <Link
+                href={siteConfig.baseAppUrl}
+                className="font-black capitalize"
+              >
+                {siteConfig.name}
+              </Link>
             </p>
           </div>
         </div>

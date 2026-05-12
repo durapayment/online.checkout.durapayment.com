@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const laravelUrl = `${process.env.LARAVEL_API_URL}/api/v1/checkout/verify/token/${encodeURIComponent(token)}`;
+    const laravelUrl = `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/v1/checkout/verify/token/${encodeURIComponent(token)}`;
 
     const response = await fetch(laravelUrl, {
       method: "GET",

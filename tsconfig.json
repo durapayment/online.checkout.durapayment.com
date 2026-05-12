@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "public/smharty.js"
+    "public/durapayment.js"
   ],
   "exclude": ["node_modules"]
 }

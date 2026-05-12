@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     // Forward request to Laravel with Bearer token
     const response = await fetch(
-      `${process.env.LARAVEL_API_URL}/api/v1/checkout/resolve/${ref}`,
+      `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/v1/checkout/resolve/${ref}`,
       {
         method: "GET",
         headers: {
@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(data);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { status: 500, message: "Internal server error" },
       { status: 500 },

@@ -1,13 +1,11 @@
 (function () {
-  if (window.Smharty) return;
+  if (window.Durapayment) return;
 
   let modalContainer = null;
   let iframe = null;
   let loader = null;
-  // const baseUrlApi = "http://localhost:8001";
-  // const baseUrlApp = "http://localhost:3001";
-  const baseUrlApi = "https://checkout-apps.smharty.com";
-  const baseUrlApp = "http://checkout.smharty.com";
+  const baseUrlApi = "http://localhost:8001";
+  const baseUrlApp = "http://localhost:3001";
 
   function createModal() {
     if (modalContainer) return;
@@ -106,7 +104,7 @@
         }
       })
       .catch((error) => {
-        console.error("Smharty: Error initiating checkout");
+        console.error("Durapayment: Error initiating checkout");
         loader.style.display = "none";
         // Open a sheet modal with error message and a button to close
         const errorModal = document.createElement("div");
@@ -162,11 +160,11 @@
     // Important: check origin in production
     // if (event.origin !== "http://localhost:3000") return;
     const data = event.data;
-    if (data?.type === "smharty-close") {
+    if (data?.type === "durapayment-close") {
       closeModal();
     }
 
-    if (data?.type === "smharty-success") {
+    if (data?.type === "durapayment-success") {
       // console.log("Payment successful!", data);
       if (typeof config?.onSuccess === "function") {
         config.onSuccess(data);
@@ -174,7 +172,7 @@
       closeModal();
     }
 
-    if (data?.type === "smharty-redirect") {
+    if (data?.type === "durapayment-redirect") {
       // Most reliable ways (try in this order):
       window.location.href = data.url; // usually works
       closeModal();
@@ -182,10 +180,10 @@
   });
 
   // Public API
-  window.Smharty = {
+  window.Durapayment = {
     checkout: function (config = {}) {
       if (!config.amount || config.amount <= 0) {
-        // console.error("Smharty: amount is required and must be greater than 0");
+        // console.error("Durapayment: amount is required and must be greater than 0");
         return;
       }
       openCheckout(config);
@@ -194,5 +192,5 @@
     close: closeModal,
   };
 
-  //   console.log("Smharty SDK loaded (development mode)");
+  //   console.log("Durapayment SDK loaded (development mode)");
 })();

@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
 
     // Forward request to Laravel with Bearer token
     const response = await fetch(
-      `${process.env.LARAVEL_API_URL}/api/v1/checkout/init`,
+      `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/v1/checkout/init`,
       {
         method: "POST",
         headers: {
