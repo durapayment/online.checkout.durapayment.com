@@ -4,8 +4,10 @@
   let modalContainer = null;
   let iframe = null;
   let loader = null;
-  const baseUrlApi = "http://localhost:8001";
-  const baseUrlApp = "http://localhost:3001";
+  // const baseUrlApi = "http://localhost:8001";
+  // const baseUrlApp = "http://localhost:3001";
+  const baseUrlApi = "https://checkoutapi.durapayment.com";
+  const baseUrlApp = "https://checkout.durapayment.com";
 
   function createModal() {
     if (modalContainer) return;
