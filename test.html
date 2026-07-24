@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoalRush — Bet. Win. Repeat.</title>
+    <title>PRIMESTAKES Рђћ Bet. Win. Repeat.</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -36,7 +36,6 @@
         overflow-x: hidden;
       }
 
-      /* Pitch texture overlay */
       body::before {
         content: "";
         position: fixed;
@@ -84,7 +83,6 @@
         overflow: hidden;
         border-right: 1px solid var(--border);
       }
-
       .left-panel::before {
         content: "";
         position: absolute;
@@ -96,7 +94,6 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
-
       .left-panel::after {
         content: "";
         position: absolute;
@@ -120,14 +117,12 @@
         z-index: 2;
         box-shadow: 0 0 40px rgba(0, 230, 118, 0.08);
       }
-
       .match-status {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
       }
-
       .live-pill {
         background: var(--red);
         color: white;
@@ -139,7 +134,6 @@
         letter-spacing: 1px;
         animation: pulse 1.5s infinite;
       }
-
       @keyframes pulse {
         0%,
         100% {
@@ -149,13 +143,11 @@
           opacity: 0.6;
         }
       }
-
       .match-time {
         font-size: 12px;
         color: var(--muted);
         font-variant-numeric: tabular-nums;
       }
-
       .teams {
         display: flex;
         align-items: center;
@@ -163,18 +155,15 @@
         gap: 10px;
         margin-bottom: 22px;
       }
-
       .team {
         text-align: center;
         flex: 1;
       }
-
       .team-flag {
         font-size: 32px;
         display: block;
         margin-bottom: 6px;
       }
-
       .team-name {
         font-size: 11px;
         color: var(--muted);
@@ -182,34 +171,29 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
       .score-display {
         display: flex;
         align-items: center;
         gap: 6px;
       }
-
       .score-num {
         font-family: "Bebas Neue", sans-serif;
         font-size: 42px;
         color: var(--green);
         line-height: 1;
       }
-
       .score-sep {
         font-family: "Bebas Neue", sans-serif;
         font-size: 28px;
         color: var(--muted);
         line-height: 1;
       }
-
       .odds-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 8px;
         margin-top: 4px;
       }
-
       .odd-btn {
         background: var(--card2);
         border: 1px solid var(--border);
@@ -219,22 +203,17 @@
         cursor: pointer;
         transition: all 0.2s ease;
       }
-
       .odd-btn:hover,
       .odd-btn.active {
         background: var(--green);
         border-color: var(--green);
       }
-
       .odd-btn:hover .odd-label,
-      .odd-btn.active .odd-label {
-        color: var(--pitch);
-      }
+      .odd-btn.active .odd-label,
       .odd-btn:hover .odd-val,
       .odd-btn.active .odd-val {
         color: var(--pitch);
       }
-
       .odd-label {
         font-size: 9px;
         color: var(--muted);
@@ -242,7 +221,6 @@
         letter-spacing: 0.5px;
         font-weight: 600;
       }
-
       .odd-val {
         font-family: "Bebas Neue", sans-serif;
         font-size: 20px;
@@ -250,7 +228,6 @@
         line-height: 1.2;
       }
 
-      /* Mini match cards below */
       .mini-matches {
         display: flex;
         flex-direction: column;
@@ -261,7 +238,6 @@
         position: relative;
         z-index: 2;
       }
-
       .mini-match {
         background: var(--card);
         border: 1px solid var(--border);
@@ -272,17 +248,14 @@
         justify-content: space-between;
         font-size: 12px;
       }
-
       .mini-teams {
         color: var(--text);
         font-weight: 500;
       }
-
       .mini-time {
         font-size: 10px;
         color: var(--muted);
       }
-
       .mini-best-odd {
         font-family: "Bebas Neue", sans-serif;
         font-size: 18px;
@@ -301,19 +274,16 @@
           transparent 100%
         );
       }
-
       .brand {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 28px;
       }
-
       .brand-icon {
         font-size: 28px;
         filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.5));
       }
-
       .brand-name {
         font-family: "Bebas Neue", sans-serif;
         font-size: 28px;
@@ -321,7 +291,6 @@
         color: var(--green);
         line-height: 1;
       }
-
       .badge {
         display: inline-flex;
         align-items: center;
@@ -338,7 +307,6 @@
         margin-bottom: 18px;
         width: fit-content;
       }
-
       h1 {
         font-family: "Bebas Neue", sans-serif;
         font-size: 52px;
@@ -347,12 +315,10 @@
         line-height: 1;
         letter-spacing: 1px;
       }
-
       h1 span {
         color: var(--green);
         text-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
       }
-
       .subtitle {
         color: var(--muted);
         font-size: 14px;
@@ -360,7 +326,6 @@
         line-height: 1.6;
         max-width: 300px;
       }
-
       .bonus-card {
         background: linear-gradient(
           135deg,
@@ -374,9 +339,8 @@
         position: relative;
         overflow: hidden;
       }
-
       .bonus-card::before {
-        content: "🎁";
+        content: "­ЪЈє";
         position: absolute;
         right: 16px;
         top: 50%;
@@ -384,7 +348,6 @@
         font-size: 36px;
         opacity: 0.4;
       }
-
       .bonus-label {
         font-size: 10px;
         color: var(--green);
@@ -393,7 +356,6 @@
         font-weight: 700;
         margin-bottom: 4px;
       }
-
       .bonus-amount {
         font-family: "Bebas Neue", sans-serif;
         font-size: 38px;
@@ -401,17 +363,14 @@
         line-height: 1;
         margin-bottom: 4px;
       }
-
       .bonus-sub {
         font-size: 12px;
         color: var(--muted);
       }
-
       .features {
         list-style: none;
         margin-bottom: 30px;
       }
-
       .features li {
         padding: 9px 0;
         color: #b2dfb4;
@@ -421,16 +380,13 @@
         gap: 10px;
         border-bottom: 1px solid rgba(0, 230, 118, 0.06);
       }
-
       .features li:last-child {
         border-bottom: none;
       }
-
       .feat-icon {
         font-size: 16px;
         flex-shrink: 0;
       }
-
       .buy-button {
         background: linear-gradient(
           135deg,
@@ -450,16 +406,13 @@
         width: 100%;
         text-transform: uppercase;
       }
-
       .buy-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 32px rgba(0, 230, 118, 0.5);
       }
-
       .buy-button:active {
         transform: translateY(0);
       }
-
       .security-note {
         margin-top: 14px;
         font-size: 12px;
@@ -484,14 +437,12 @@
         z-index: 100;
         overflow: hidden;
       }
-
       .ticker-inner {
         display: flex;
         gap: 60px;
         animation: ticker 20s linear infinite;
         white-space: nowrap;
       }
-
       @keyframes ticker {
         0% {
           transform: translateX(0);
@@ -500,7 +451,6 @@
           transform: translateX(-50%);
         }
       }
-
       .ticker-item {
         display: flex;
         align-items: center;
@@ -508,35 +458,228 @@
         font-size: 12px;
         color: var(--muted);
       }
-
       .ticker-item strong {
         color: var(--text);
         font-weight: 600;
       }
-
       .ticker-item .ticker-odd {
         color: var(--accent);
         font-family: "Bebas Neue", sans-serif;
         font-size: 16px;
       }
 
+      /* РћђРћђ MODAL РћђРћђ */
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-backdrop.open {
+        display: flex;
+      }
+
+      .modal {
+        background: var(--card);
+        border: 1px solid rgba(0, 230, 118, 0.25);
+        border-radius: 20px;
+        padding: 36px 32px;
+        width: 100%;
+        max-width: 420px;
+        position: relative;
+        box-shadow:
+          0 0 60px rgba(0, 230, 118, 0.12),
+          0 20px 60px rgba(0, 0, 0, 0.6);
+        animation: slideUp 0.3s ease;
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 18px;
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 22px;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s;
+      }
+      .modal-close:hover {
+        color: var(--text);
+      }
+
+      .modal-header {
+        margin-bottom: 24px;
+      }
+      .modal-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 30px;
+        color: var(--green);
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+      .modal-sub {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .field label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--muted);
+      }
+
+      .field input {
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        width: 100%;
+      }
+      .field input::placeholder {
+        color: rgba(124, 180, 126, 0.4);
+      }
+      .field input:focus {
+        border-color: rgba(0, 230, 118, 0.5);
+        box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.08);
+      }
+      .field input.error {
+        border-color: var(--red);
+      }
+
+      /* Amount presets */
+      .amount-presets {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+      }
+      .preset-btn {
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 5px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.15s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .preset-btn:hover,
+      .preset-btn.selected {
+        background: var(--green);
+        border-color: var(--green);
+        color: var(--pitch);
+      }
+
+      .modal-error {
+        background: rgba(255, 23, 68, 0.1);
+        border: 1px solid rgba(255, 23, 68, 0.3);
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 13px;
+        color: #ff6b8a;
+        margin-bottom: 16px;
+        display: none;
+      }
+      .modal-error.show {
+        display: block;
+      }
+
+      .submit-btn {
+        background: linear-gradient(
+          135deg,
+          var(--green) 0%,
+          var(--dark-green) 100%
+        );
+        color: var(--pitch);
+        border: none;
+        padding: 15px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: 2px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 230, 118, 0.3);
+        width: 100%;
+        margin-top: 4px;
+      }
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(0, 230, 118, 0.45);
+      }
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .modal-note {
+        margin-top: 12px;
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+      }
+
       @media (max-width: 768px) {
         .container {
           grid-template-columns: 1fr;
         }
-
         .left-panel {
           padding: 40px 20px;
           border-right: none;
           border-bottom: 1px solid var(--border);
         }
-
         .right-panel {
           padding: 36px 24px;
         }
-
         h1 {
           font-size: 40px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .modal {
+          padding: 28px 20px;
         }
       }
     </style>
@@ -547,13 +690,12 @@
       <div class="left-panel">
         <div class="scoreboard">
           <div class="match-status">
-            <span class="live-pill">● Live</span>
+            <span class="live-pill">­Ъћ┤ Live</span>
             <span class="match-time">67'</span>
           </div>
-
           <div class="teams">
             <div class="team">
-              <span class="team-flag">🦁</span>
+              <span class="team-flag">­Ъћх</span>
               <span class="team-name">Chelsea</span>
             </div>
             <div class="score-display">
@@ -562,11 +704,10 @@
               <span class="score-num">1</span>
             </div>
             <div class="team">
-              <span class="team-flag">🦅</span>
+              <span class="team-flag">­Ъћ┤</span>
               <span class="team-name">Arsenal</span>
             </div>
           </div>
-
           <div class="odds-row">
             <div class="odd-btn active">
               <div class="odd-label">1</div>
@@ -593,7 +734,7 @@
           </div>
           <div class="mini-match">
             <div>
-              <div class="mini-teams">Real Madrid vs Barça</div>
+              <div class="mini-teams">Real Madrid vs Bar├Дa</div>
               <div class="mini-time">Tomorrow 21:00</div>
             </div>
             <div class="mini-best-odd">3.75</div>
@@ -604,11 +745,11 @@
       <!-- RIGHT: CTA / Deposit panel -->
       <div class="right-panel">
         <div class="brand">
-          <span class="brand-icon">⚽</span>
-          <span class="brand-name">GoalRush</span>
+          <span class="brand-icon">Рџй</span>
+          <span class="brand-name">PRIMESTAKES</span>
         </div>
 
-        <span class="badge">🔥 New Members Offer</span>
+        <span class="badge">­ЪјЂ New Members Offer</span>
 
         <h1>BET SMART.<br /><span>WIN BIG.</span></h1>
         <p class="subtitle">
@@ -618,40 +759,26 @@
 
         <div class="bonus-card">
           <div class="bonus-label">Welcome Bonus</div>
-          <div class="bonus-amount">₦10,000</div>
+          <div class="bonus-amount">Рѓд10,000</div>
           <div class="bonus-sub">100% match on your first deposit</div>
         </div>
 
         <ul class="features">
           <li>
-            <span class="feat-icon">⚡</span> Instant withdrawals to your bank
+            <span class="feat-icon">­Ъњ│</span> Instant withdrawals to your bank
           </li>
           <li>
-            <span class="feat-icon">📺</span> Live streaming of 500+ matches
+            <span class="feat-icon">­ЪЊ║</span> Live streaming of 500+ matches
           </li>
-          <li><span class="feat-icon">🎯</span> 10,000+ markets every day</li>
+          <li><span class="feat-icon">­Ъј»</span> 10,000+ markets every day</li>
         </ul>
 
-        <button
-          class="buy-button"
-          onclick="
-            Durapayment.checkout({
-              public_key: 'pk_live_Rqb4W6n6nckD02unXPwD8ZZmhMBbO151',
-              amount: 100,
-              customer_email: 'olutechn@gmail.com',
-              customer_firstname: 'Olumide',
-              customer_lastname: 'John',
-              customer_phone: '08141314105',
-              currency: 'NGN',
-              redirect_url: 'http://checkout.durapayment.com/success',
-            })
-          "
-        >
+        <button class="buy-button" onclick="openModal()">
           Deposit &amp; Claim Bonus
         </button>
 
         <div class="security-note">
-          🔒 Secure payment powered by Durapayment
+          ­Ъћњ Secure payment powered by Durapayment
         </div>
       </div>
     </div>
@@ -660,58 +787,294 @@
     <div class="ticker">
       <div class="ticker-inner">
         <span class="ticker-item"
-          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Chelsea 2–1 Arsenal</strong>
+          >­ЪЈ┤заЂДзаЂбзаЂЦзаЂ«заЂДзаЂ┐ <strong>Chelsea 2РђЊ1 Arsenal</strong>
           <span class="ticker-odd">67'</span></span
         >
         <span class="ticker-item"
-          >🇪🇸 <strong>Real Madrid 1–0 Atlético</strong>
+          >­ЪЄф­ЪЄИ­ЪЈ┤ <strong>Real Madrid 1РђЊ0 Atl├Еtico</strong>
           <span class="ticker-odd">55'</span></span
         >
         <span class="ticker-item"
-          >🇩🇪 <strong>Bayern 3–2 Dortmund</strong>
+          >­ЪЄЕ­ЪЄф­ЪЈ┤ <strong>Bayern 3РђЊ2 Dortmund</strong>
           <span class="ticker-odd">80'</span></span
         >
         <span class="ticker-item"
-          >🇮🇹 <strong>Juventus 0–0 Inter</strong>
+          >­ЪЄ«­ЪЄ╣­ЪЈ┤ <strong>Juventus 0РђЊ0 Inter</strong>
           <span class="ticker-odd">32'</span></span
         >
         <span class="ticker-item"
-          >🇫🇷 <strong>PSG 2–0 Lyon</strong>
+          >­ЪЄФ­ЪЄи­ЪЈ┤ <strong>PSG 2РђЊ0 Lyon</strong>
           <span class="ticker-odd">71'</span></span
         >
         <span class="ticker-item"
-          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Man City 1–1 Liverpool</strong>
+          >­ЪЈ┤заЂДзаЂбзаЂЦзаЂ«заЂДзаЂ┐
+          <strong>Man City 1РђЊ1 Liverpool</strong>
           <span class="ticker-odd">45'</span></span
         >
         <!-- duplicate for seamless loop -->
         <span class="ticker-item"
-          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Chelsea 2–1 Arsenal</strong>
+          >­ЪЈ┤заЂДзаЂбзаЂЦзаЂ«заЂДзаЂ┐ <strong>Chelsea 2РђЊ1 Arsenal</strong>
           <span class="ticker-odd">67'</span></span
         >
         <span class="ticker-item"
-          >🇪🇸 <strong>Real Madrid 1–0 Atlético</strong>
+          >­ЪЄф­ЪЄИ­ЪЈ┤ <strong>Real Madrid 1РђЊ0 Atl├Еtico</strong>
           <span class="ticker-odd">55'</span></span
         >
         <span class="ticker-item"
-          >🇩🇪 <strong>Bayern 3–2 Dortmund</strong>
+          >­ЪЄЕ­ЪЄф­ЪЈ┤ <strong>Bayern 3РђЊ2 Dortmund</strong>
           <span class="ticker-odd">80'</span></span
         >
         <span class="ticker-item"
-          >🇮🇹 <strong>Juventus 0–0 Inter</strong>
+          >­ЪЄ«­ЪЄ╣­ЪЈ┤ <strong>Juventus 0РђЊ0 Inter</strong>
           <span class="ticker-odd">32'</span></span
         >
         <span class="ticker-item"
-          >🇫🇷 <strong>PSG 2–0 Lyon</strong>
+          >­ЪЄФ­ЪЄи­ЪЈ┤ <strong>PSG 2РђЊ0 Lyon</strong>
           <span class="ticker-odd">71'</span></span
         >
         <span class="ticker-item"
-          >🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Man City 1–1 Liverpool</strong>
+          >­ЪЈ┤заЂДзаЂбзаЂЦзаЂ«заЂДзаЂ┐
+          <strong>Man City 1РђЊ1 Liverpool</strong>
           <span class="ticker-odd">45'</span></span
         >
       </div>
     </div>
 
+    <!-- РћђРћђ DEPOSIT MODAL РћђРћђ -->
+    <div class="modal-backdrop" id="depositModal">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          РюЋ
+        </button>
+
+        <div class="modal-header">
+          <div class="modal-title" id="modalTitle">­Ъњ░ Make a Deposit</div>
+          <div class="modal-sub">
+            Fill in your details to claim your welcome bonus
+          </div>
+        </div>
+
+        <div id="formError" class="modal-error"></div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="e.g. Olumide"
+              autocomplete="given-name"
+            />
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="e.g. John"
+              autocomplete="family-name"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="08012345678"
+            autocomplete="tel"
+          />
+        </div>
+
+        <div class="field">
+          <label for="amount">Deposit Amount (Рѓд)</label>
+          <div class="amount-presets">
+            <button class="preset-btn" onclick="setPreset(this, 1000)">
+              Рѓд1,000
+            </button>
+            <button class="preset-btn" onclick="setPreset(this, 2000)">
+              Рѓд2,000
+            </button>
+            <button class="preset-btn" onclick="setPreset(this, 5000)">
+              Рѓд5,000
+            </button>
+            <button class="preset-btn" onclick="setPreset(this, 10000)">
+              Рѓд10,000
+            </button>
+          </div>
+          <input
+            type="number"
+            id="amount"
+            placeholder="Enter amount (min Рѓд100)"
+            min="100"
+          />
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="handleDeposit()">
+          PROCEED TO PAYMENT
+        </button>
+        <div class="modal-note">
+          ­Ъћњ Secured by Durapayment ┬и SSL Encrypted
+        </div>
+      </div>
+    </div>
+
     <!-- <script src="http://localhost:3001/durapayment.js"></script> -->
     <script src="https://checkout.durapayment.com/durapayment.js"></script>
+    <script>
+      // Odds button toggle
+      document.querySelectorAll(".odd-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".odd-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+      });
+
+      // Modal open/close
+      function openModal() {
+        document.getElementById("depositModal").classList.add("open");
+        document.getElementById("firstName").focus();
+      }
+
+      function closeModal() {
+        document.getElementById("depositModal").classList.remove("open");
+        clearErrors();
+      }
+
+      // Close on backdrop click
+      document
+        .getElementById("depositModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      // Amount presets
+      function setPreset(btn, value) {
+        document
+          .querySelectorAll(".preset-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        document.getElementById("amount").value = value;
+      }
+
+      // Sync manual amount input to deselect presets
+      document.getElementById("amount")?.addEventListener("input", function () {
+        const val = Number(this.value);
+        document.querySelectorAll(".preset-btn").forEach((b) => {
+          const presetVal = parseInt(b.textContent.replace(/[Рѓд,]/g, ""));
+          b.classList.toggle("selected", presetVal === val);
+        });
+      });
+
+      // Validation helpers
+      function showError(msg) {
+        const el = document.getElementById("formError");
+        el.textContent = msg;
+        el.classList.add("show");
+      }
+
+      function clearErrors() {
+        document.getElementById("formError").classList.remove("show");
+        document
+          .querySelectorAll(".field input")
+          .forEach((i) => i.classList.remove("error"));
+      }
+
+      function markError(id) {
+        document.getElementById(id).classList.add("error");
+        document.getElementById(id).focus();
+      }
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function isValidPhone(phone) {
+        return /^[0-9+\s\-()]{7,15}$/.test(phone.trim());
+      }
+
+      // Handle deposit
+      function handleDeposit() {
+        clearErrors();
+
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const amount = Number(document.getElementById("amount").value);
+
+        if (!firstName) {
+          showError("Please enter your first name.");
+          markError("firstName");
+          return;
+        }
+        if (!lastName) {
+          showError("Please enter your last name.");
+          markError("lastName");
+          return;
+        }
+        if (!email || !isValidEmail(email)) {
+          showError("Please enter a valid email address.");
+          markError("email");
+          return;
+        }
+        if (!phone || !isValidPhone(phone)) {
+          showError("Please enter a valid phone number.");
+          markError("phone");
+          return;
+        }
+        if (!amount || amount < 100) {
+          showError("Minimum deposit is Рѓд100.");
+          markError("amount");
+          return;
+        }
+
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.textContent = "LOADINGРђд";
+
+        try {
+          Durapayment.checkout({
+            public_key: "pk_live_URtm5a01bjqtYZLpu7ipJ8rQ5Hz94fLe",
+            amount: amount,
+            customer_email: email,
+            customer_firstname: firstName,
+            customer_lastname: lastName,
+            customer_phone: phone,
+            currency: "NGN",
+            redirect_url: "http://checkout.durapayment.com/success",
+          });
+        } catch (err) {
+          showError("Payment could not be initiated. Please try again.");
+          console.error(err);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "PROCEED TO PAYMENT";
+        }
+      }
+    </script>
   </body>
 </html>
