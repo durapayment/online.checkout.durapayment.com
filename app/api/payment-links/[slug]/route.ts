@@ -15,6 +15,8 @@ export async function GET(
       },
     );
 
+    // cs
+
     const data = await res.json();
     return NextResponse.json(data, { status: res.status });
   } catch (error) {
