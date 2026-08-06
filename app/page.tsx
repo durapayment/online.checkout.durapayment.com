@@ -558,6 +558,7 @@ const InnerCheckout = () => {
           </div>
           {["card", "transfer"].map((method) => (
             <div
+              role="presentation"
               key={method}
               onClick={() => setCurrentPage(method)}
               className="h-[45px] cursor-pointer w-full border-b-[0.6px] border-[#e2e2e2] flex items-center justify-start"
