@@ -290,6 +290,7 @@ export default function ClientCheckout({
           </div>
           {paymentMethods.map((v) => (
             <div
+              role="presentation"
               key={v.title}
               onClick={() => {
                 changeCurrentPage(v.page);
