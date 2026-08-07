@@ -30,6 +30,7 @@ interface LinkData {
   business_name: string | null;
   business_logo: string | null;
   public_key: string | null;
+  redirect_url: string | null;
   payment_link_id: string;
 }
 
@@ -175,6 +176,7 @@ export default function PaymentLinkPage() {
       customer_firstname: firstName,
       customer_lastname: lastName,
       customer_phone: phone,
+      redirect_url: link.redirect_url || undefined,
       currency: link.currency,
       meta: { payment_link_id: link.payment_link_id },
     });

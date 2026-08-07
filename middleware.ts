@@ -4,9 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
-  // ────────────────────────────────────────────────
-  //   Allow public assets, api routes, next internals
-  // ────────────────────────────────────────────────
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
@@ -18,17 +15,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // ────────────────────────────────────────────────
-  //   Payment links use a path-based slug, not the ref/pk
-  //   query-string scheme below — always public, no gate. ──
-  // ────────────────────────────────────────────────
   if (pathname.startsWith("/payment/")) {
     return NextResponse.next();
   }
 
-  // ────────────────────────────────────────────────
-  //   Protect ALL app/ routes — require ref + dent
-  // ────────────────────────────────────────────────
   const refParam = searchParams.get("ref");
 
   if (!refParam) {
@@ -37,10 +27,18 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  const decodeRef = atob(refParam);
-  const parts = decodeRef.split("||");
-  const reference = parts[0];
-  const pk = parts[1];
+  // ── Never let a malformed ref crash the whole middleware ──────────
+  try {
+    const decodeRef = atob(refParam);
+    const parts = decodeRef.split("||");
+    const reference = parts[0];
+    const pk = parts[1];
+  } catch (e) {
+    console.error("Middleware: failed to decode ref param", e);
+    const redirectUrl =
+      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    return NextResponse.redirect(redirectUrl);
+  }
 
   return NextResponse.next();
 }
