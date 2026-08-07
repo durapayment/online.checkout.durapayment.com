@@ -43,7 +43,7 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
 
   if (images.length === 0) {
     return (
-      <div className="w-full h-full min-h-[280px] bg-gray-100 flex items-center justify-center">
+      <div className="w-full h-full min-h-[280px] min-w-0 bg-gray-100 flex items-center justify-center">
         <svg
           width="48"
           height="48"
@@ -64,11 +64,11 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
   const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
 
   return (
-    <div className="relative w-full h-full min-h-[280px] bg-gray-900 group">
+    <div className="relative w-full h-full min-h-[280px] min-w-0 overflow-hidden bg-gray-900 group">
       <img
         src={images[index]}
         alt={title}
-        className="w-full h-full object-cover"
+        className="w-full h-full max-w-full object-cover"
       />
 
       {images.length > 1 && (
@@ -209,16 +209,16 @@ export default function PaymentLinkPage() {
     <>
       <script src="https://checkout.durapayment.com/durapayment.js" async />
 
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
-        <div className="max-w-5xl w-full bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm">
+      <div className="min-h-screen w-full overflow-x-hidden bg-gray-50 flex items-center justify-center px-4 py-10">
+        <div className="max-w-5xl w-full min-w-0 bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm">
           <div className="grid md:grid-cols-2">
             {/* ── Left: image carousel ─────────────────────────── */}
-            <div className="relative">
+            <div className="relative min-w-0">
               <ImageCarousel images={link.images} title={link.title} />
             </div>
 
             {/* ── Right: details + form ────────────────────────── */}
-            <div className="p-8 md:p-10 flex flex-col">
+            <div className="p-8 md:p-10 flex flex-col min-w-0">
               {link.business_name && (
                 <div className="flex items-center gap-2 mb-4">
                   {link.business_logo && (
@@ -270,14 +270,14 @@ export default function PaymentLinkPage() {
                     placeholder="First name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-[14px] outline-none focus:border-gray-400"
+                    className="flex-1 min-w-0 px-4 py-2.5 border border-gray-200 rounded-xl text-[14px] outline-none focus:border-gray-400"
                   />
                   <input
                     type="text"
                     placeholder="Last name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-[14px] outline-none focus:border-gray-400"
+                    className="flex-1 min-w-0 px-4 py-2.5 border border-gray-200 rounded-xl text-[14px] outline-none focus:border-gray-400"
                   />
                 </div>
                 <input
