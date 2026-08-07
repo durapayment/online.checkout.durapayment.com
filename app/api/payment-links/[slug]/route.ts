@@ -8,7 +8,7 @@ export async function GET(
     const { slug } = await params;
 
     const res = await fetch(
-      `${process.env.CHECKOUT_API_URL}/api/payment-links/${slug}`,
+      `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/payment-links/${slug}`,
       {
         headers: { Accept: "application/json" },
         cache: "no-store",
