@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 declare global {
   interface Window {
@@ -66,17 +67,21 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
 
   return (
     <div className="relative w-full h-full min-h-[280px] min-w-0 overflow-hidden bg-gray-900 group">
-      <img
+      <Image
         src={images[index]}
         alt={title}
-        className="w-full h-full max-w-full object-cover"
+        fill
+        quality={60}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover"
+        priority={index === 0}
       />
 
       {images.length > 1 && (
         <>
           <button
             onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-sm transition-colors"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-sm transition-colors z-10"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path
@@ -90,7 +95,7 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
           </button>
           <button
             onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-sm transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-sm transition-colors z-10"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path
@@ -103,8 +108,7 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
             </svg>
           </button>
 
-          {/* dot indicators */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
             {images.map((_, i) => (
               <button
                 key={i}
@@ -116,8 +120,7 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
             ))}
           </div>
 
-          {/* thumbnail strip */}
-          <div className="absolute top-3 right-3 flex gap-1.5">
+          <div className="absolute top-3 right-3 flex gap-1.5 z-10">
             <span className="px-2 py-1 rounded-full bg-black/50 text-white text-[11px] font-medium">
               {index + 1} / {images.length}
             </span>

@@ -4,6 +4,12 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "durapayment-documents.s3.eu-north-1.amazonaws.com",
+      },
+    ],
   },
 };
 
