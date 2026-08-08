@@ -361,9 +361,9 @@ export default function PaymentLinkPage() {
                 </div>
               ) : (
                 <div className="mt-6 pb-6 border-b border-gray-100">
-                  <label className="text-[13px] font-medium text-gray-600 mb-1.5 block">
+                  <p className="text-[13px] font-medium text-gray-600 mb-1.5 block">
                     Enter amount
-                  </label>
+                  </p>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[20px] font-bold text-gray-400">
                       {link.currency === "NGN" ? "₦" : link.currency}
