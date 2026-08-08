@@ -300,14 +300,16 @@ export default function PaymentLinkPage() {
                 </p>
               )}
 
-              <div className="flex items-baseline gap-2 mt-6 pb-6 border-b border-gray-100">
-                <p className="text-[34px] font-bold text-gray-900">
-                  {link.currency === "NGN" ? "₦" : link.currency + " "}
-                  {link.amount.toLocaleString("en-NG", {
-                    minimumFractionDigits: 2,
-                  })}
-                </p>
-              </div>
+              {link.amount_type === "fixed" && (
+                <div className="flex items-baseline gap-2 mt-6 pb-6 border-b border-gray-100">
+                  <p className="text-[34px] font-bold text-gray-900">
+                    {link.currency === "NGN" ? "₦" : link.currency + " "}
+                    {link.amount.toLocaleString("en-NG", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
+                </div>
+              )}
 
               <p className="text-[13px] font-semibold text-gray-700 mt-6 mb-3">
                 Your details
