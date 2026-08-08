@@ -33,6 +33,8 @@ interface LinkData {
   public_key: string | null;
   redirect_url: string | null;
   payment_link_id: string;
+  amount_type: "fixed" | "open";
+  fee_payer: "merchant" | "customer";
 }
 
 // ─────────────────────────────────────────────────────────
@@ -144,6 +146,45 @@ export default function PaymentLinkPage() {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [customAmount, setCustomAmount] = useState("");
+  const [quote, setQuote] = useState<{ fee: number; total: number } | null>(
+    null,
+  );
+  const [quoting, setQuoting] = useState(false);
+
+  useEffect(() => {
+    if (!link) return;
+
+    const amountToQuote =
+      link.amount_type === "fixed" ? link.amount : Number(customAmount);
+
+    if (!amountToQuote || amountToQuote <= 0) {
+      setQuote(null);
+      return;
+    }
+
+    const timeout = setTimeout(async () => {
+      setQuoting(true);
+      try {
+        const res = await fetch(`/api/payment-links/${slug}/quote`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: amountToQuote }),
+        });
+        const json = await res.json();
+        if (res.ok) {
+          setQuote({ fee: json.data.fee, total: json.data.total });
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setQuoting(false);
+      }
+    }, 400); // debounce for the 'open' amount typing case
+
+    return () => clearTimeout(timeout);
+  }, [link, customAmount, slug]);
+
   useEffect(() => {
     (async () => {
       try {
@@ -168,19 +209,30 @@ export default function PaymentLinkPage() {
       setError("Please fill in all your details before paying.");
       return;
     }
+    if (
+      link.amount_type === "open" &&
+      (!customAmount || Number(customAmount) <= 0)
+    ) {
+      setError("Please enter an amount.");
+      return;
+    }
+    if (!quote) {
+      setError("Please wait — calculating amount.");
+      return;
+    }
 
     setSubmitting(true);
     setError(null);
 
     window.Durapayment.checkout({
       public_key: link.public_key,
-      amount: link.amount,
+      amount: quote.total, // ← the actual amount to charge, fee-inclusive if applicable
       customer_email: email,
       customer_firstname: firstName,
       customer_lastname: lastName,
       customer_phone: phone,
-      redirect_url: link.redirect_url || undefined,
       currency: link.currency,
+      redirect_url: link.redirect_url || undefined,
       meta: { payment_link_id: link.payment_link_id },
     });
 
@@ -298,14 +350,53 @@ export default function PaymentLinkPage() {
                 <p className="text-[13px] text-red-500 mt-3">{error}</p>
               )}
 
+              {link.amount_type === "fixed" ? (
+                <div className="flex items-baseline gap-2 mt-6 pb-6 border-b border-gray-100">
+                  <p className="text-[34px] font-bold text-gray-900">
+                    {link.currency === "NGN" ? "₦" : link.currency + " "}
+                    {link.amount!.toLocaleString("en-NG", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-6 pb-6 border-b border-gray-100">
+                  <label className="text-[13px] font-medium text-gray-600 mb-1.5 block">
+                    Enter amount
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[20px] font-bold text-gray-400">
+                      {link.currency === "NGN" ? "₦" : link.currency}
+                    </span>
+                    <input
+                      type="number"
+                      min={1}
+                      value={customAmount}
+                      onChange={(e) => setCustomAmount(e.target.value)}
+                      placeholder="0.00"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-[24px] font-bold text-gray-900 outline-none focus:border-gray-400"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {quote && link.fee_payer === "customer" && quote.fee > 0 && (
+                <p className="text-[12px] text-gray-400 -mt-4 mb-2">
+                  Includes {link.currency === "NGN" ? "₦" : link.currency + " "}
+                  {quote.fee.toLocaleString("en-NG")} processing fee
+                </p>
+              )}
+
               <button
                 onClick={handlePay}
-                disabled={submitting}
+                disabled={submitting || quoting || !quote}
                 className="w-full mt-6 py-3.5 rounded-xl bg-gray-900 text-white font-semibold text-[15px] hover:bg-gray-800 transition-colors disabled:opacity-50"
               >
                 {submitting
                   ? "Processing…"
-                  : `Pay ${link.currency === "NGN" ? "₦" : link.currency + " "}${link.amount.toLocaleString("en-NG")}`}
+                  : quote
+                    ? `Pay ${link.currency === "NGN" ? "₦" : link.currency + " "}${quote.total.toLocaleString("en-NG")}`
+                    : "Enter an amount"}
               </button>
 
               <div className="flex items-center justify-center gap-1.5 mt-5">
