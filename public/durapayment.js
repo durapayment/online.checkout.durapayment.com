@@ -84,6 +84,7 @@
       customer_firstname: config.customer_firstname || "",
       customer_lastname: config.customer_lastname || "",
       customer_phone: config.customer_phone || "",
+      reference: config.reference || "",
     });
 
     // Initiate payment session here if needed (e.g., fetch a session ID)
